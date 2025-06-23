@@ -1,0 +1,90 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <title>WA Campaign Sender</title>
+  <!-- Icons -->
+  <link rel="stylesheet" href="libs/remixicon/remixicon.css" />
+  <!-- Your popup styles -->
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+  <link rel="stylesheet" href="css/accessibility-overrides.css" />
+  <!-- Initialize toast container -->
+</head>
+<body>
+  <div class="popup-container">
+    <!-- ────────── Header ────────── -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">
+          <img src="images/Logo.png" alt="WA Campaign Sender Logo">
+        </div>
+        <h1 class="logo-text"><small>WA Campaign Sender-Plugin</small> </h1>
+      </div>
+      <div class="connection-status">
+        <div class="status-indicator" id="connectionIndicator"></div>
+        <span id="connectionStatus">Disconnected</span>
+      </div>
+    </header>
+
+    <!-- ────────── Main content ────────── -->
+    <main class="main-content">
+      <div id="content-area">
+        <!-- Quick‑action grid -->
+        <div class="quick-actions" id="mainMenu">
+          <h2>Quick Actions</h2>
+          <div class="action-buttons">
+            <button id="openSenderBtn" class="action-button">
+              <i class="ri-message-3-line"></i>
+              <span>Message Sender</span>
+            </button>
+            <button id="openExtractorBtn" class="action-button">
+              <i class="ri-contacts-book-line"></i>
+              <span>Contact Extractor</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Active‑campaign card -->
+      <div class="campaign-status" id="campaignStatusContainer">
+        <h2>Active Campaign</h2>
+        <div id="noCampaignMessage">
+          <p>No active campaign running</p>
+        </div>
+        <div class="center-button-container">
+          <button id="activeCampaignBtn" class="btn btn-primary" style="display:none;">Active Campaign</button>
+        </div>
+        <!-- Detailed progress UI handled elsewhere -->
+      </div>
+    </main>
+    <!-- ────────── Footer ────────── -->
+    <footer class="footer">
+      <div class="profile-info">
+        <i class="ri-user-line"></i>
+        <p>Profile:</p> <!-- Label -->
+        <span id="waUserPhoneNumber"></span> <!-- Number -->
+        <span id="waUserNumberStatus">(loading...)</span> <!-- Status -->
+      </div>
+      
+      <button id="openWhatsAppBtn" class="btn btn-primary">
+        <i class="ri-whatsapp-line"></i>
+        Open WhatsApp Web
+      </button>
+      
+      <div class="footer-links">
+        <a href="#" id="helpLink">Help</a>
+        <a href="#" id="feedbackLink">Feedback</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Popup logic -->
+  <script type="module" src="js/popup.js"></script>
+</body>
+</html>

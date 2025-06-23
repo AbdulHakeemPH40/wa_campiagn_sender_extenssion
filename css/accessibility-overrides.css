@@ -1,0 +1,12 @@
+/* Accessibility overrides for toast notifications */
+.toast.info    { background-color:#0dcaf0 !important; color:#ffffff !important; }
+.toast.success { background-color:#28a745 !important; color:#ffffff !important; }
+.toast.warning { background-color:#ffc107 !important; color:#ffffff !important; }
+.toast.error   { background-color:#dc3545 !important; color:#ffffff !important; }
+.toast.dark    { background-color:#343a40 !important; color:#ffffff !important; }
+
+.toast-info    { background-color:#0dcaf0 !important; color:#ffffff !important; }
+.toast-success { background-color:#28a745 !important; color:#ffffff !important; }
+.toast-warning { background-color:#ffc107 !important; color:#ffffff !important; }
+.toast-error   { background-color:#dc3545 !important; color:#ffffff !important; }
+.toast-dark    { background-color:#343a40 !important; color:#ffffff !important; } 

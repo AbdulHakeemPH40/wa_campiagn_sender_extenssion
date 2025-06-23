@@ -1,0 +1,60 @@
+/* css/profile.css */
+
+.profile-info {
+    font-family: var(--font-family, 'Inter', sans-serif);
+    display: inline-flex; /* Changed to inline-flex to behave like a chip */
+    align-items: center;
+    gap: 8px; /* Adjusted gap for avatar style */
+    padding: 4px 10px; /* Added padding */
+    font-size: 0.8rem; /* Slightly smaller than main text if desired */
+    /* color: var(--text-secondary, #6B7280); */ /* Default text color for p tag - will be overridden */ /* Assuming a CSS variable from style.css, or use a specific color */
+    /* margin-left: auto; */ /* Pushes it to the right if footer is flex and this is desired */
+    /* margin-right: 15px; */ /* Or some specific margin */
+    /* flex-grow: 1; */ /* Removed as inline-flex won't typically grow like this in a flex footer unless specifically managed */
+    /* justify-content: flex-start; */
+}
+
+.profile-info i {
+    font-size: 0.9rem; /* Adjusted for fitting inside the circle */
+    color: var(--bg-white, #FFFFFF); /* Icon glyph color */
+    background-color: var(--whatsapp-green-dark, #128C7E); /* Circular background */
+    width: 28px; /* Width of the circle */
+    height: 28px; /* Height of the circle */
+    border-radius: 50%; /* Makes it circular */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* Helps with vertical centering of some icons */
+}
+
+.profile-info p {
+    margin: 0; /* Remove default paragraph margins */
+    color: var(--whatsapp-green-dark, #128C7E); /* Darker green for better visibility */
+    font-weight: 500; /* Match phone number weight if desired */
+    font-size: 0.9rem; /* Increased font size */
+}
+
+#waUserPhoneNumber {
+    font-weight: 500; /* Make the number slightly bolder */
+    color: var(--whatsapp-green-dark, #128C7E); /* Darker green for better visibility */
+    margin-left: 4px; /* Add a small space after 'Profile:' */ /* Assuming a CSS variable, or use a specific color */
+    font-size: 0.9rem; /* Increased font size */
+}
+
+#waUserNumberStatus {
+    font-style: italic;
+    color: var(--text-light, #9CA3AF); /* Status message color */ /* Muted color for status */
+    font-size: 0.75rem;
+    margin-left: 4px; /* Small space before status message */
+}
+
+/* Adjustments to ensure footer items are spaced out nicely. 
+   The main .footer in style.css might need display:flex and justify-content: space-between. */
+
+/* Example if .footer-links needs to be pushed to the right: */
+/* .footer {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+   }
+*/
