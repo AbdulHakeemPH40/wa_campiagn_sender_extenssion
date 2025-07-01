@@ -1,0 +1,111 @@
+/* Safety Mode Styles */
+
+.safety-mode-status {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+.safety-mode-status-display {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.safety-mode-status-display .text-muted {
+  color: #6c757d;
+  margin-right: 8px;
+}
+
+.safety-mode-status-display .phone-number-value {
+  font-weight: 500;
+  color: #198754;
+}
+
+.safety-mode-status-display .phone-number-value.not-found {
+  color: #dc3545;
+}
+
+.safety-mode-status-display .phone-number-value.checking {
+  color: #ffc107;
+}
+
+.safety-warning {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #fff3cd;
+  color: #856404;
+  font-size: 13px;
+}
+
+.safety-warning i {
+  margin-right: 5px;
+}
+
+.safety-test-button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background-color: #198754;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.safety-test-button i {
+  margin-right: 5px;
+}
+
+.safety-test-button:hover {
+  background-color: #157347;
+}
+
+.safety-test-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.safety-test-result {
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.safety-test-result.success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.safety-test-result.error {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+.safety-test-result.pending {
+  background-color: #cff4fc;
+  color: #055160;
+}
+
+/* Animation for testing */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.safety-testing {
+  animation: pulse 1.5s infinite;
+}

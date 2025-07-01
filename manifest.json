@@ -1,0 +1,83 @@
+{
+  "manifest_version": 3,
+  "name": "WA Campaign Sender",
+  "version": "1.0.0",
+  "description": "WhatsApp Campaign Sender Extension",
+  "icons": {
+    "48": "icons/icon48.png",
+    "128": "icons/icon48.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon48.png"
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "tabs",
+    "activeTab",
+    "scripting",
+    "clipboardWrite",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/*"
+  ],
+  "background": {
+    "service_worker": "js/background/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": [
+        "js/utils/timestamp.js", 
+        "js/content.js", 
+        "js/content/content_script.js"
+      ],
+      "css": ["css/floating-ui.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "popup.html",
+        "html/*.html",
+        "css/*.css",
+        "js/*.js",
+        "js/utils/*.js",
+        "js/injected/*.js",
+        "libs/*.js",
+        "libs/remixicon/remixicon.css",
+        "libs/remixicon/remixicon.woff2",
+        "libs/remixicon/remixicon.woff",
+        "libs/remixicon/remixicon.ttf",
+        "libs/papaparse.min.js",
+        "libs/xlsx.full.min.js",
+        "images/*.png",
+        "fonts/*.woff",
+        "fonts/*.woff2",
+        "fonts/*.ttf",
+        "fonts/*.eot",
+        "js/utils/store-media-helper.js",
+        "js/content/injector.js",
+        "js/content/fl.js",
+        "js/content/safetyMessageInitializer.js",
+        "js/content/blockedUserDetector.js",
+        "js/utils/adaptiveSelectors.js",
+        "js/fixCampaignStatus.js",
+        "js/utils/campaignSafetyManager.js"
+      ],
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; worker-src 'self'"
+  },
+  "externally_connectable": {
+    "matches": ["*://web.whatsapp.com/*"]
+  }
+}

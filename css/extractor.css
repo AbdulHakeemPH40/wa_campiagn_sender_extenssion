@@ -1,0 +1,196 @@
+/* Reset for buttons to avoid inherited styles */
+.extractor-options button {
+  all: unset;
+}
+
+/* Main content container */
+/* Header section with title and subtitle */
+.extractor-header {
+  margin-bottom: 8px;
+}
+
+.extractor-header h2 {
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--whatsapp-green);
+  margin: 0 0 4px 4px;
+}
+
+.extractor-header .subtitle {
+  font-size: 12px;
+  color: var(--text-medium);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Extractor content container */
+.extractor-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Action buttons section */
+.extractor-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px; /* Increased gap for more space between buttons */
+  margin-bottom: 8px;
+}
+
+/* Extractor buttons - Enhanced design */
+.extractor-options .extractor-button {
+  padding: 14px; /* Consistent padding */
+  background: var(--bg-white); /* Clean white background */
+  border: 1px solid var(--whatsapp-green); /* Green border */
+  border-radius: var(--border-radius-sm); /* 6px border radius */
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-dark); /* Dark text for contrast */
+  display: inline-flex;
+  align-items: center;
+  box-shadow: var(--shadow-sm); /* Subtle shadow for depth */
+  transition: all 0.2s ease; /* Smooth transitions for hover/active effects */
+  margin: 2px 5px;
+}
+
+/* Icon styling */
+.extractor-options .extractor-button i {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--whatsapp-green); /* Green icon */
+}
+
+/* Hover effect */
+.extractor-options .extractor-button:hover {
+  background: var(--bg-light); /* Light gray background on hover */
+  box-shadow: var(--shadow); /* Slightly stronger shadow on hover */
+  transform: scale(1.02); /* Subtle scale effect for interactivity */
+}
+
+/* Active effect */
+.extractor-options .extractor-button:active {
+  background: var(--button-neutral); /* Neutral gray on active */
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* Inset shadow on active */
+  transform: scale(0.98); /* Slight shrink effect on click */
+}
+
+/* Extracted contacts section */
+.extractor-results {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: none;
+  margin-top: 8px;
+  border: 1px solid var(--whatsapp-green); /* Green border for the results section */
+  color: var(--text-dark); /* Dark text for contrast */
+}
+
+.extractor-results.visible {
+  display: block;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.results-header h3 {
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--whatsapp-green);
+  margin: 0;
+}
+
+/* Results list */
+.results-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.results-list .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 0;
+  text-align: center;
+  color: var(--text-medium);
+}
+
+.results-list .empty-state i {
+  font-size: 40px;
+  color: var(--whatsapp-green);
+}
+
+.results-list .empty-state p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.results-list .empty-state .small {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* Export button - Enhanced design */
+.extractor-btn {
+  padding: 8px 12px;
+  border: 1px solid var(--whatsapp-green);
+  border-radius: var(--border-radius-sm);
+  background: var(--bg-white);
+  color: var(--text-dark);
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.extractor-btn i {
+  font-size: 12px;
+  color: var(--whatsapp-green);
+}
+
+.extractor-btn:hover {
+  background: var(--bg-light);
+  box-shadow: var(--shadow);
+  transform: scale(1.02);
+}
+
+.extractor-btn:active {
+  background: var(--button-neutral);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  transform: scale(0.98);
+}
+
+/* Hide Active Campaign section on extractor.html */
+#campaignStatusContainer {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 360px) {
+  .extractor-main-content {
+    padding: 4px;
+  }
+  
+  .extractor-options {
+    gap: 1px;
+  }
+  
+  .extractor-button, .extractor-btn {
+    padding: 6px;
+  }
+}

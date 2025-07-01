@@ -1,0 +1,306 @@
+/* Campaign progress specific styles */
+.campaign-progress-container {
+  padding: 15px;
+}
+
+.campaign-header {
+  text-align: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 15px;
+}
+
+.campaign-header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 0 5px 0;
+}
+
+.campaign-header p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+
+.progress-section {
+  margin-bottom: 20px;
+}
+
+.progress-section h2 {
+  font-size: 15px;
+  margin: 0 0 10px 0;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 12px;
+  background-color: #e9ecef;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  /* Override plain colour with animated gradient like floating-UI */
+  background: linear-gradient(90deg, #25D366 0%, #128C7E 100%);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 0%;
+}
+
+/* Shimmer sweep animation */
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%);
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* State: paused */
+.progress-bar.paused-pulse {
+  background: linear-gradient(90deg, #F5A623 0%, #F7B84B 100%);
+  animation: pulse-paused 2s infinite;
+}
+
+/* State: completed */
+.progress-bar.completed {
+  background: linear-gradient(90deg, #34D399 0%, #10B981 100%);
+  animation: shimmer 2s infinite, complete-animation 3s ease-in-out infinite;
+}
+
+@keyframes complete-animation {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  50%  { transform: scale(1.05); opacity: 1;   }
+  100% { transform: scale(1);   opacity: 0.7; }
+}
+
+/* Subtle hover feedback */
+.progress-bar:hover {
+  filter: brightness(1.05);
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.progress-stats .progress-percentage {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.stat-box {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.stat-box .stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.stat-box .stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.success .stat-value {
+  color: #2e7d32;
+}
+
+.error .stat-value {
+  color: #c62828;
+}
+
+.current-operation {
+  background-color: #e3f2fd;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 15px;
+}
+
+.current-operation p {
+  margin: 0;
+  font-size: 13px;
+  color: #0d47a1;
+}
+
+.errors-section {
+  margin-top: 15px;
+}
+
+.errors-section h2 {
+  font-size: 15px;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+.errors-section h2 i {
+  margin-right: 5px;
+  color: #c62828;
+}
+
+.error-list {
+  max-height: 100px;
+  overflow-y: auto;
+  background-color: #ffebee;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.error-item {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(198, 40, 40, 0.2);
+}
+
+.error-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.controls button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls button i {
+  margin-right: 5px;
+}
+
+.controls .pause-resume-btn {
+  background-color: #ff9800;
+  color: white;
+}
+
+.controls .stop-btn {
+  background-color: #c62828;
+  color: white;
+}
+
+.controls .back-btn {
+  background-color: #e0e0e0;
+  color: #424242;
+}
+
+/* Pulse animation for active operation */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.pulse {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Campaign summary styles */
+.campaign-summary {
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f5f9ff;
+  border-radius: 8px;
+  border: 1px solid #e0e9f7;
+}
+
+.campaign-summary h2 {
+  font-size: 16px;
+  color: var(--primary-color);
+  margin: 0 0 5px 0;
+}
+
+.campaign-summary p {
+  font-size: 14px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.campaign-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styles for the dynamically added back button */
+button#backBtn {
+  position: relative;
+  margin-bottom: 15px;
+  padding: 8px 15px;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-color);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+button#backBtn i {
+  margin-right: 5px;
+}
+
+button#backBtn:hover {
+  background-color: var(--bg-hover);
+}
+
+@keyframes pulse-paused {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}

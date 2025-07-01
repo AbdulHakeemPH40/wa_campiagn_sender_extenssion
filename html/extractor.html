@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Contact Extractor – WA Campaign Sender</title>
+  <meta name="description" content="Extract WhatsApp contacts from groups, chats, or contact lists using the WA Campaign Sender Chrome extension." />
+  <meta name="keywords" content="WhatsApp contact extractor, group contacts, chat scraper, WA campaign tool, contact downloader, WhatsApp group export" />
+  <meta name="author" content="WA Campaign Sender Team" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#128C7E" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="../libs/remixicon/remixicon.css" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/extractor.css" />
+  <link rel="stylesheet" href="../css/accessibility-overrides.css" />
+</head>
+
+<body>
+  <main class="extractor-main-content">
+    <div class="extractor-header">
+      <h2>Contact Extractor</h2>
+      <p class="subtitle">Easily extract contacts from your WhatsApp groups or chats</p>
+    </div>
+    <div class="extractor-content">
+      <div class="extractor-options">
+        <button id="extractFromGroupBtn" class="extractor-button" aria-label="Extract contacts from a WhatsApp group">
+          <i class="ri-group-line"></i>
+          <span>Extract from Group</span>
+        </button>
+        <button id="extractFromChatBtn" class="extractor-button" aria-label="Extract contacts from a WhatsApp chat">
+          <i class="ri-chat-1-line"></i>
+          <span>Extract from Chat</span>
+        </button>
+        <button id="extractFromContactsBtn" class="extractor-button" aria-label="Extract contacts from a WhatsApp Contacts">
+          <i class="ri-contacts-book-line"></i>
+          <span>Extract from Contacts</span>
+        </button>
+      </div>
+      <!-- Group controls (new) -->
+      <div id="groupControlsContainer" class="button-container" style="display:none;">
+        <button id="loadGroupsButton" class="extractor-btn extractor-btn-primary" aria-label="Load WhatsApp groups">
+          <i class="ri-refresh-line"></i>
+          Load My Groups
+        </button>
+      </div>
+      <div id="groupListContainer" style="display:none; margin-bottom: 8px; max-height: 180px; overflow-y:auto; border:1px solid #eee; border-radius:4px; padding:6px;">
+        <div style="margin-bottom:4px; display:flex; align-items:center;">
+          <input type="checkbox" id="selectAllGroups" style="margin-right:6px;">
+          <label for="selectAllGroups" style="font-size:12px;">Select/Deselect All</label>
+        </div>
+        <div id="groupList"></div>
+        <div id="selectedGroupActionsContainer" style="display:none; margin-top:8px;">
+          <button id="downloadSelectedGroupContacts" class="extractor-btn extractor-btn-primary" aria-label="Download contacts from selected groups">
+            <i class="ri-download-line"></i>
+            Download Selected Groups
+          </button>
+        </div>
+      </div>
+      <!-- Attractive design and layout are handled by extractor.css and style.css -->
+      <div class="extractor-results" id="extractorResults">
+        <div class="results-header">
+          <h3>Extracted Contacts</h3>
+          <button id="exportContactsBtn" class="extractor-btn extractor-btn-primary" aria-label="Export extracted contacts">
+            <i class="ri-download-line"></i>
+            Export
+          </button>
+        </div>
+        <div class="results-list" id="contactsList">
+          <!-- Contacts will be listed here -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Extractor logic -->
+  <script type="module" src="../js/extractor.js"></script>
+</body>
+</html>

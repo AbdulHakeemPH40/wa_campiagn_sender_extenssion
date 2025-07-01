@@ -1,0 +1,37 @@
+{
+  "name": "wa-campaign-sender",
+  "version": "1.0.0",
+  "description": "WhatsApp Campaign Sender Extension",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"No build step required\" && exit 0",
+    "lint": "eslint js/**/*.js",
+    "format": "prettier --write \"js/**/*.js\"",
+    "zip": "node scripts/zip-extension.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/wa-campaign-sender.git"
+  },
+  "keywords": [
+    "whatsapp",
+    "campaign",
+    "sender",
+    "messaging",
+    "automation",
+    "extension"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yourusername/wa-campaign-sender/issues"
+  },
+  "homepage": "https://github.com/yourusername/wa-campaign-sender#readme",
+  "devDependencies": {
+    "eslint": "^8.42.0",
+    "prettier": "^2.8.8",
+    "archiver": "^5.3.1"
+  },
+  "dependencies": {}
+}

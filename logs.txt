@@ -1,0 +1,89 @@
+ Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.
+(anonymous) @ GOzupiBp832.js:163
+ Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+a.getImageData @ ux_Mn6YHiBtR4VakKFhr…yOtQWzMnwH96e.js:39
+ [Injector] Posting message: WHATSAPP_NUMBER_FETCHER_RESULT Object
+ [WA-Content] Received phone number from injector: {
+  "type": "WHATSAPP_NUMBER_FETCHER_RESULT",
+  "source": "injector-script",
+  "phoneNumber": "919008715802"
+}
+ [Injector] WhatsApp loaded, initializing...
+ [Injector] Posting message: WHATSAPP_LOADED Object
+ [Content] Received WhatsApp loaded event from injector
+ WA Campaign Sender: injector.js (contacts extractor) loaded.
+ [WA-Content] Received message: campaignStatusUpdate
+ [WA-Content] Chat loaded successfully for 919562785641, proceeding with send
+ [WA-Content] Using legacy URL method for 919562785641
+ [WA-Content] Navigating to chat 919562785641, attempt 1
+ [WA-Content] Sending attachment via clipboard to 919562785641
+ [WA-Content] FILEINPUT: Starting attachment flow. File: File Caption: 🚀 Send Smarter on WhatsApp with WA Campaign Sender!
+Choose the Plan That Fits You:
+✅ $15 – 1 Month
+✅ $60 – 6 Months
+✅ $99 – 1 Year (Best Value!)
+💡 $99/year = Less than $1/month per number
+No hidden fees. One-time payment. Full access.
+[9:39:03 PM]
+ [WA-Content] FILEINPUT: Skipping ALL silent methods for images to prevent sticker conversion.
+ [WA-Content] FILEINPUT: Skipping hidden input approach for images to prevent sticker conversion
+ [WA-Content] FILEINPUT: Error finding hidden inputs: skipHiddenForImages
+sendAttachmentViaClipboard @ content.js:2526
+ [WA-Content] FILEINPUT: Thumbnail generated successfully
+ [WA-Content] FILEINPUT: Standard DataTransfer method used
+ [WA-Content] FILEINPUT: File injected into hidden input & change event dispatched.
+ [WA-Content] FILEINPUT: No preview container found, attempting fallback methods
+ [WA-Content] FILEINPUT: Setting caption for image/jpeg
+ [WA-Content] FILEINPUT: Caption input not found after 5 attempts for image/jpeg
+sendAttachmentViaClipboard @ content.js:2881
+ [WA-Content] FILEINPUT: Waiting for send button for image/jpeg
+ [WA-Content] FILEINPUT: Send button timeout after 3000 ms - forcing cleanup and continue
+sendAttachmentViaClipboard @ content.js:2930
+ [WA-Content] FILEINPUT: Setting up post-send thumbnail fix for chat history
+ [WA-Content] FILEINPUT: No broken thumbnails found to fix or fixes were unsuccessful
+ [WA-Content] Legacy method SUCCESS for 919562785641
+ [WA-Content] Message sent successfully to 919562785641
+ [WA-Content] Chat loaded successfully for 919744359433, proceeding with send
+ [WA-Content] Using legacy URL method for 919744359433
+ [WA-Content] Navigating to chat 919744359433, attempt 1
+ [WA-Content] Sending attachment via clipboard to 919744359433
+[9:39:26 PM]
+ [WA-Content] Legacy method SUCCESS for 919744359433
+ [WA-Content] Message sent successfully to 919744359433
+ [WA-Content] Chat loaded successfully for 971501464078, proceeding with send
+ [WA-Content] Using legacy URL method for 971501464078
+ [WA-Content] Navigating to chat 971501464078, attempt 1
+ [WA-Content] Sending attachment via clipboard to 971501464078
+[9:39:47 PM]
+VM34 injector.js:78 [Injector] Posting message: WHATSAPP_NUMBER_FETCHER_RESULT Object
+content.js:519 [WA-Content] Received phone number from injector: {
+content.js:2784 [WA-Content] FILEINPUT: No preview container found, attempting fallback methods
+VM34 injector.js:1046 [Injector] WhatsApp loaded, initializing...
+VM34 injector.js:78 [Injector] Posting message: WHATSAPP_LOADED Object
+content_script.js:112 [Content] Received WhatsApp loaded event from injector
+VM34 injector.js:3 WA Campaign Sender: injector.js (contacts extractor) loaded.
+content.js:2825 [WA-Content] FILEINPUT: Setting caption for image/jpeg
+content.js:2869 [WA-Content] FILEINPUT: Caption set successfully for image/jpeg
+content.js:2901 [WA-Content] FILEINPUT: Waiting for send button for image/jpeg
+content.js:2918 [WA-Content] FILEINPUT: Send button clicked using selector div[aria-label="Send"][role="button"] for image/jpeg
+content.js:2951 [WA-Content] FILEINPUT: Setting up post-send thumbnail fix for chat history
+ux_Mn6YHiBtR4VakKFhrWAcmcgfZ2Brzn2dDsB8mjg2bQ42Ep5p_kNNwdSLLt122faeGB_9uMXXjyAUeSLbaAl_b9xzK9TNQZMeLadkxQJUOTn1-w6ra_JoBUxos_EzNfcyOtQWzMnwH96e.js:39 Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+a.getImageData @ ux_Mn6YHiBtR4VakKFhrWAcmcgfZ2Brzn2dDsB8mjg2bQ42Ep5p_kNNwdSLLt122faeGB_9uMXXjyAUeSLbaAl_b9xzK9TNQZMeLadkxQJUOTn1-w6ra_JoBUxos_EzNfcyOtQWzMnwH96e.js:39
+content.js:3063 [WA-Content] FILEINPUT: No broken thumbnails found to fix or fixes were unsuccessful
+VM34 injector.js:78 [Injector] Posting message: WHATSAPP_LOADED {timestamp: 1751391598167}
+VM34 injector.js:78 [Injector] Posting message: WHATSAPP_NUMBER_FETCHER_RESULT {phoneNumber: '919008715802'}
+VM564 injector.js:3 WA Campaign Sender: injector.js (contacts extractor) loaded.
+VM566 injector.js:3 WA Campaign Sender: injector.js (contacts extractor) loaded.
+VM34 injector.js:78 [Injector] Posting message: WHATSAPP_LOADED {timestamp: 1751391598626}
+VM738 injector.js:3 WA Campaign Sender: injector.js (contacts extractor) loaded.
+VM740 injector.js:3 WA Campaign Sender: injector.js (contacts extractor) loaded.
+VM564 injector.js:78 [Injector] Posting message: WHATSAPP_NUMBER_FETCHER_RESULT {phoneNumber: '919008715802'}
+VM566 injector.js:78 [Injector] Posting message: WHATSAPP_NUMBER_FETCHER_RESULT {phoneNumber: '919008715802'}
+content.js:971 [WA-Content] Legacy method SUCCESS for 971501464078
+content.js:1021 [WA-Content] Message sent successfully to 971501464078
+content.js:631 [WA-Content] Received message: campaignStatusUpdate
+VM34 injector.js:78 [Injector] Posting message: WHATSAPP_LOADED {timestamp: 1751391599075}
+injector.js:3 WA Campaign Sender: injector.js (contacts extractor) loaded.
+VM738 injector.js:78 [Injector] Posting message: WHATSAPP_NUMBER_FETCHER_RESULT {phoneNumber: '919008715802'}
+VM740 injector.js:78 [Injector] Posting message: WHATSAPP_NUMBER_FETCHER_RESULT {phoneNumber: '919008715802'}
+injector.js:78 [Injector] Posting message: WHATSAPP_NUMBER_FETCHER_RESULT {phoneNumber: '919008715802'}

@@ -1,0 +1,125 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags (for documentation/future hosting) -->
+  <title>WA Campaign Sender</title>
+  <meta name="description" content="WA Campaign Sender lets you send, schedule, and manage personalized WhatsApp messages and campaigns directly from your browser extension." />
+  <meta name="author" content="WA Campaign Sender Team" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="keywords" content="WhatsApp campaign, message sender, WA campaign plugin, WhatsApp extension, contact extractor, bulk sender, WA tools" />
+
+  <!-- Web App Capable (Optional) -->
+  <meta name="theme-color" content="#128C7E" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="libs/remixicon/remixicon.css" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/accessibility-overrides.css" />
+  <link rel="stylesheet" href="css/profile-section.css" />
+</head>
+
+
+<body>
+  <div class="popup-container">
+    <!-- ────────── Header ────────── -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">
+          <img src="images/logo.png" alt="WA Campaign Sender Logo">
+        </div>
+        <h1 class="logo-text"><small>WA Campaign Sender-Plugin</small> </h1>
+      </div>
+      <div class="connection-status">
+        <div class="status-indicator" id="connectionIndicator"></div>
+        <span id="connectionStatus">Disconnected</span>
+      </div>
+    </header>
+
+    <!-- ────────── Main content ────────── -->
+    <main class="main-content">
+      <div id="content-area">
+        <!-- Quick‑action grid -->
+        <div class="quick-actions" id="mainMenu">
+          <h2>Quick Actions</h2>
+          <div class="action-buttons">
+            <button id="openSenderBtn" class="action-button">
+              <i class="ri-message-3-line"></i>
+              <span>Message Sender</span>
+            </button>
+            <button id="openExtractorBtn" class="action-button">
+              <i class="ri-contacts-book-line"></i>
+              <span>Contact Extractor</span>
+            </button>
+          </div>
+          <div id="licenseStatus" class="license-status"
+            style="margin-top:10px;padding:8px;border-radius:4px;font-size:12px;display:none;">
+            <span id="licenseText"></span>
+          </div>
+        </div>
+      </div>
+      <!-- Active‑campaign card -->
+      <div class="campaign-status" id="campaignStatusContainer">
+        <h2>Active Campaign</h2>
+        <div id="noCampaignMessage">
+          <p>No active campaign running</p>
+        </div>
+        <div class="center-button-container">
+          <button id="activeCampaignBtn" class="btn btn-primary" style="display:none;">Active Campaign</button>
+        </div>
+        <!-- Detailed progress UI handled elsewhere -->
+      </div>
+    </main>
+    <!-- ────────── Footer ────────── -->
+    <footer class="footer">
+      <!-- Profile card -->
+      <div class="profile-card" id="profileCard">
+        <div class="avatar">
+          <i class="ri-user-line"></i>
+        </div>
+
+        <div class="info">
+          <div class="row primary">
+            <span id="waUserPhoneNumber" class="phone"></span>
+            <span id="licenseBadge" class="badge inactive">INACTIVE</span>
+          </div>
+
+          <div class="row secondary">
+            <span id="licenseInfo"></span>
+            <a id="buyNowLink" class="buy-now" href="https://wacampaignsender.com/#pricing" target="_blank">Buy Now</a>
+
+          </div>
+        </div>
+      </div>
+
+
+      <button id="openWhatsAppBtn" class="btn btn-primary">
+        <i class="ri-whatsapp-line"></i>
+        Open WhatsApp Web
+      </button>
+
+      <div class="footer-links">
+        <a href="#" id="helpLink">Help</a>
+        <a href="#" id="feedbackLink">Feedback</a>
+        <a href="#" id="clearCacheLink" style="color:#ff4444;">Clear Cache</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Popup logic -->
+  <script type="module" src="js/popup.js"></script>
+  <script type="module" src="js/featureGuard.js"></script>
+</body>
+
+</html>

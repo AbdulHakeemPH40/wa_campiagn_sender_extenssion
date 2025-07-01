@@ -1,0 +1,131 @@
+/* css/style.css */
+:root {
+  --whatsapp-green: #06c24b;
+  --whatsapp-green-dark: #128C7E;
+  --text-dark: #1F2937;
+  --text-medium: #4B5563;
+  --text-light: #9CA3AF;
+  --bg-light: #F9FAFB;
+  --bg-white: #FFFFFF;
+  --border-color: #E5E7EB;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --border-radius: 10px;
+  --border-radius-sm: 6px;
+  --accent-blue: #3B82F6;
+  --accent-gray: #6B7280;
+  --button-neutral: #E5E7EB;
+  --status-checking: #FFA500;
+  --status-connected: #25D366;
+  --status-disconnected: #FF5252;
+  --component-bg: #FFFFFF;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --button-bg: #25D366;
+  --button-hover-bg: #20BA57;
+  --success: #4CAF50;
+  --danger: #F44336;
+  --danger-light: #FF5252;
+  --whatsapp-teal: #25D366;
+  --whatsapp-teal-light: #20BA57;
+  --font-family: 'Inter', sans-serif;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  width: 360px;
+  min-height: 480px;
+  overflow-x: hidden;
+}
+
+/* Attachment Styles - FIXED VERSION */
+.attachment-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  margin-top: 8px;
+  position: relative;
+  min-width: 0;
+}
+
+.attachment-thumb {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.attachment-thumb .attachment-icon {
+  font-size: 24px;
+  color: var(--whatsapp-green-dark);
+  margin: 0;
+}
+
+.attachment-info {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  margin-right: 8px;
+}
+
+.attachment-info p:first-child {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.attachment-info p:last-child {
+  font-size: 10px;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.attachment-item .ri-delete-bin-line {
+  cursor: pointer;
+  color: var(--text-medium);
+  flex-shrink: 0;
+  padding: 4px;
+  transition: all 0.2s ease;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attachment-item .ri-delete-bin-line:hover {
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.1);
+  transform: translateY(-50%) scale(1.1);
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Campaign Progress – WA Campaign Sender</title>
+  <meta name="description" content="Track your WhatsApp campaign progress in real-time with detailed stats on message delivery, errors, and estimated time remaining." />
+  <meta name="keywords" content="WhatsApp campaign progress, message status, WA sender stats, WhatsApp message tracking, bulk message analytics" />
+  <meta name="author" content="Abdul Hakeem" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#128C7E" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="../libs/remixicon/remixicon.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/campaign.css" />
+</head>
+
+<body>
+  <div class="popup-container">
+    <!-- ────────── Header ────────── -->
+    <!-- ────────── Main content ────────── -->
+    <main class="main-content">
+      <div class="campaign-progress-container">        <button id="backBtn" class="back-btn">
+          <i class="ri-arrow-left-line"></i> Back to Sender
+        </button>        <div class="campaign-header">
+          <h1>Campaign in Progress</h1>
+          <p>Sending messages to <span id="contactCount">0</span> contacts</p>
+        </div>
+        
+        <div class="whatsapp-status connected" id="whatsappStatus">
+          <i class="ri-check-line"></i>
+          <span>Connected to WhatsApp</span>
+          <i class="ri-arrow-down-s-line dropdown-icon"></i>
+        </div>
+        
+        <div class="current-operation pulse" id="currentOperation">
+          <p>Initializing campaign...</p>
+        </div>
+    
+    <div class="progress-section">
+      <h2>Progress</h2>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-stats">
+        <span id="progressCount">0/0</span>
+        <span class="progress-percentage" id="progressPercentage">0%</span>
+      </div>
+    </div>    <div class="stats-grid">
+      <div class="stat-box success">
+        <div class="stat-value" id="successCount">0</div>
+        <div class="stat-label">Successful</div>
+      </div>
+      <div class="stat-box error">
+        <div class="stat-value" id="failureCount">0</div>
+        <div class="stat-label">Failed</div>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box time">
+        <div class="stat-value" id="averageTimeValue">0s</div>
+        <div class="stat-label">Avg. Send Time</div>
+      </div>
+      <div class="stat-box time">
+        <div class="stat-value" id="timeRemainingValue">--:--</div>
+        <div class="stat-label">Est. Time Left</div>
+        <div class="time-tooltip">Estimated based on current processing speed</div>
+      </div>
+    </div>
+    
+    <div class="errors-section" id="errorsSection" style="display: none;">
+      <h2><i class="ri-error-warning-line"></i> Errors</h2>
+      <div class="error-list" id="errorList"></div>
+    </div>      </div>
+    </main>
+    
+    <!-- ────────── Footer ────────── -->
+    <footer class="footer">
+      <button id="openWhatsAppBtn" class="btn btn-primary">
+        <i class="ri-whatsapp-line"></i>
+        Open WhatsApp Web
+      </button>
+      <div class="footer-links">
+        <a href="#" id="helpLink">Help</a>
+        <a href="#" id="feedbackLink">Feedback</a>
+      </div>
+    </footer>
+  </div>
+  
+  <script type="module" src="../js/campaign-progress.js"></script>
+</body>
+</html>

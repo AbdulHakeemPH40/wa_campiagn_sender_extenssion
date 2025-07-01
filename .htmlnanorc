@@ -1,0 +1,6 @@
+{
+  "minifyCss": true,
+  "minifyJs": true,
+  "removeComments": true,
+  "collapseWhitespace": "conservative"
+} 

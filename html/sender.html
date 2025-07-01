@@ -1,0 +1,455 @@
+<!-- html/sender.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta (useful for future hosted version or internal clarity) -->
+  <title>Message Sender – WA Campaign Tool</title>
+  <meta name="description" content="Easily compose, personalize, and send bulk WhatsApp messages using WA Campaign Sender's smart messaging interface." />
+  <meta name="keywords" content="WhatsApp message sender, WA campaign tool, personalized messaging, bulk WhatsApp sender, contact upload, CSV to WhatsApp" />
+  <meta name="author" content="WA Campaign Sender Team" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Optional Theming -->
+  <meta name="theme-color" content="#128C7E" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <!-- Icons & Styles -->
+  <link rel="stylesheet" href="../libs/remixicon/remixicon.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/validation.css" />
+  <link rel="stylesheet" href="../css/paste-error.css" />
+
+  <!-- JS Libraries -->
+  <script src="../libs/papaparse.min.js"></script>
+  <script src="../libs/xlsx.full.min.js"></script>
+  <script src="../js/utils/excel-parser.js"></script>
+  <script src="../js/lib-fallbacks/library-fallbacks.js"></script>
+  <script type="module" src="../js/utils/direct-sender.js"></script>
+  <script type="module" src="../js/contactManagerNew.js"></script>
+  <script type="module" src="../js/utils/fileUtils.js"></script>
+</head>
+
+
+<body>
+  <div class="popup-container">
+    <h2>Message Sender</h2>
+    <div class="sender-grid">
+      <!-- Contact Management Section -->
+      <div id="contactManagement" class="sender-section">
+        <div class="section-header">
+          <h3>Contact Management <i class="ri-arrow-right-s-line section-arrow"></i></h3>
+        </div>
+        <div class="section-content">
+          <!-- Error message area for contact upload -->
+          <div id="contactUploadError" style="display:none;color:#d9534f;font-weight:600;margin-bottom:10px;"></div>
+          
+          <!-- Validation results will be displayed here -->
+          <div id="validationResults" class="validation-results"></div>
+          
+          <!-- Contact Source Conflict Message -->
+          <div id="contactSourceConflict" class="contact-source-conflict" style="display:none;background-color:#fff3cd;color:#856404;border:1px solid #ffeeba;border-radius:4px;padding:10px;margin-bottom:12px;">
+            <div class="conflict-message"></div>
+            <div class="conflict-actions" style="margin-top:8px;display:flex;gap:10px;">
+              <button class="conflict-action-switch" style="background-color:#28a745;color:white;border:none;border-radius:4px;padding:5px 10px;cursor:pointer;">Switch to this method</button>
+              <button class="conflict-action-cancel" style="background-color:#dc3545;color:white;border:none;border-radius:4px;padding:5px 10px;cursor:pointer;">Cancel</button>
+            </div>
+          </div>
+          
+          <!-- Tab Navigation -->
+          <div class="tabs">
+            <button type="button" class="tab-btn active" data-target="numbersTab">
+              <i class="ri-list-unordered"></i> Number List
+            </button>
+            <button type="button" class="tab-btn" data-target="uploadTab">
+              <i class="ri-upload-2-line"></i> Upload CSV
+            </button>
+          </div>
+
+          <!-- Tab Content -->
+          <div class="tab-content">
+            <!-- Number List Tab -->
+            <div id="numbersTab" class="tab-pane active">
+              <label class="field-label" for="numbersArea">
+                Phone numbers <small>(separate with comma or newline)</small>
+
+              </label>
+              <textarea id="numbersArea" placeholder="Enter phone numbers. Separate using comma or newline."
+                rows="4"></textarea>
+              <button id="clearNumbersBtn" class="clear-numbers-btn" title="Clear all numbers">
+                <i class="ri-delete-bin-line" style="color: #ff0000;"></i>
+              </button>
+
+              <p class="hint">
+                Enter phone numbers in <code>17133003000</code> or <code>+17133003000</code> format.
+                Country code in front. Separate phone numbers using comma or newline.
+              </p>
+              <div id="numberFormatError" class="input-error"
+                style="display:none;color:#d9534f;font-weight:600;margin-top:5px;"></div>
+            </div>
+
+            <!-- Upload CSV Tab -->
+            <div id="uploadTab" class="tab-pane">
+              <div class="import-contacts">
+                <div id="dropArea" class="import-area">
+                  <i class="ri-upload-cloud-line ri-xl"></i>
+                  <p>Drag and drop CSV, XLSX, or XLS here or</p>
+                  <label class="btn btn-primary">
+                    Browse Files
+                    <input type="file" id="importContactsInput" class="hidden" accept=".csv,.xlsx,.xls" />
+                  </label>
+                </div>
+                <div id="fileDisplay" class="file-display" style="display: none;">
+                  <span id="fileName"
+                    style="cursor: pointer; color: var(--whatsapp-green-dark); text-decoration: underline;"></span>
+                  <i class="ri-delete-bin-line" id="removeFile"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button id="sampleDownloadBtn" class="btn">
+              <i class="ri-file-excel-2-line attachment-icon"></i>
+              Sample Download
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message Composer Section -->
+      <div id="messageComposer" class="sender-section">
+        <div class="section-header">
+          <h3>Message Composer <i class="ri-arrow-right-s-line section-arrow"></i></h3>
+        </div>
+        <div class="section-content">
+          <label class="section-label">Message Content</label>
+          <div id="editor-container" class="editor-container">
+            <div id="toolbar">
+              <button data-cmd="italic"><i class="ri-italic"></i></button>
+              <button data-cmd="strikethrough"><i class="ri-strikethrough"></i></button>
+              <button data-cmd="bold"><i class="ri-bold"></i></button>
+            </div>
+            <div id="editor" contenteditable="true" data-placeholder="Type your message here..."></div>
+          </div>
+          <div class="resize-handle"><i class="ri-drag-move-2-line"></i></div>
+          <!-- Variable Selection -->
+          <div class="variable-selection">
+            <label class="section-label">Insert Variable</label>
+            <div class="variable-dropdown">
+              <button id="variableToggle" class="variable-btn">
+                Add Variable <i class="ri-arrow-down-s-line"></i>
+              </button>
+              <div id="variableMenu" class="variable-menu" style="display: none;">
+                <!-- Dynamic variables will be inserted here -->
+                <div id="dynamicVariables"></div>
+              </div>
+            </div>
+            <div id="variableError" class="variable-error" style="display: none;"></div>
+          </div>
+          <!-- Attachments -->
+          <div class="attachment-section" style="margin-top: 16px;">
+            <label class="section-label">Attachments</label>
+            <div class="attachment-buttons-horizontal">
+              <label class="attachment-btn">
+                <i class="ri-image-line attachment-icon"></i><span class="attachment-label">Image</span>
+                <input type="file" id="imageInput" class="hidden" accept="image/jpeg,image/png" />
+              </label>
+              <label class="attachment-btn">
+                <i class="ri-video-line attachment-icon"></i><span class="attachment-label">Video</span>
+                <input type="file" id="videoInput" class="hidden" accept="video/mp4,video/webm">
+              </label>
+              
+              <label class="attachment-btn">
+                <i class="ri-file-pdf-2-line attachment-icon"></i><span class="attachment-label">PDF</span>
+                <input type="file" id="pdfInput" class="hidden" accept="application/pdf" />
+              </label>
+            </div>
+            <div id="attachmentError" class="attachment-error"></div>
+            <div id="attachmentPreview" class="attachment-preview"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sending Controls Section -->
+      <div id="sendingControls" class="sender-section">
+        <div class="section-header">
+          <h3>Sending Controls <i class="ri-arrow-right-s-line section-arrow"></i></h3>
+        </div>
+        <div class="section-content">
+          
+
+          <!-- Delay Between Messages -->
+          <div class="control-group">
+            <label class="control-label">Turbo Mode
+              <i class="ri-speed-up-line" title="Disable all artificial waits. No delay between messages. Faster but higher ban-risk."></i>
+            </label>
+            <div class="control-input-wrapper">
+              <label class="toggle-switch">
+                <input type="checkbox" id="turboModeToggle" class="toggle-switch-input" />
+                <span class="toggle-switch-slider"></span>
+              </label>
+            </div>
+          </div>
+          <!-- Warning for turbo mode -->
+          <div id="turboWarningMessage" class="warning-message" style="display:none; margin: 5px 0; padding: 8px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 4px; font-size: 12px;">
+            <i class="ri-alert-line" style="margin-right: 5px;"></i>
+            <span>Turbo Mode skips all safety delays. Use at your own risk.</span>
+          </div>
+          <!-- Delay Between Messages -->
+          <div class="control-group">
+            <label class="control-label">Delay Between Messages</label>
+            <div class="control-input-wrapper">
+              <label class="toggle-switch">
+                <input type="checkbox" id="randomTimeGapToggle" class="toggle-switch-input" />
+                <span class="toggle-switch-slider"></span>
+              </label>
+            </div>
+          </div>
+          <!-- Warning message for disabling delay -->
+          <div id="delayWarningMessage" class="warning-message" style="display:none; margin: 5px 0; padding: 8px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 4px; font-size: 12px;">
+            <i class="ri-alert-line" style="margin-right: 5px;"></i>
+            <span>Warning: Disabling message delays significantly increases the risk of your account being banned by WhatsApp.</span>
+          </div>
+          <!-- Random Time Gap -->
+          <div id="randomTimeGapSection" class="control-group-sub">
+            <div class="range-row">
+              <div class="input-unit-group">
+                <span class="range-prefix">Min</span>
+                <input type="number" id="randomTimeGapMin" value="6" min="1" class="control-input small-input" />
+                <span class="input-unit tiny-unit">sec</span>
+              </div>
+              <div class="input-unit-group">
+                <span class="range-prefix">Max</span>
+                <input type="number" id="randomTimeGapMax" value="10" min="5" class="control-input small-input" />
+                <span class="input-unit tiny-unit">sec</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Human-like Delay Patterns -->
+          <div class="control-group">
+            <label class="control-label">Human-like Delay Patterns
+              <i class="ri-information-line pattern-info-icon" id="patternInfoIcon" title="Mimics human typing behavior with occasional pauses, quick replies, and variable typing speeds"></i>
+            </label>
+            <div class="control-input-wrapper">
+              <label class="toggle-switch">
+                <input type="checkbox" id="delayPatternToggle" class="toggle-switch-input" />
+                <span class="toggle-switch-slider"></span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Human Pattern Intensity Slider -->
+          <div id="humanPatternSection" class="control-group-sub">
+            <label class="control-label-sub">Pattern Intensity</label>
+            <div class="slider-container">
+              <input type="range" id="humanPatternIntensity" class="slider-input" min="0" max="100" value="70" />
+              <div class="slider-labels">
+                <span>Subtle</span>
+                <span>Balanced</span>
+                <span>Obvious</span>
+              </div>
+            </div>
+            <div class="pattern-description" style="font-size: 11px; color: #666; margin-top: 5px;">
+              Higher intensity means more noticeable human-like behavior patterns
+            </div>
+          </div>
+          
+          <!-- Split Messages into Batches -->
+          <div class="control-group">
+            <label class="control-label">Split Msgs into Batches</label>
+            <div class="control-input-wrapper">
+              <label class="toggle-switch">
+                <input type="checkbox" id="splitBatchesToggle" class="toggle-switch-input" />
+                <span class="toggle-switch-slider"></span>
+              </label>
+            </div>
+          </div>
+          <!-- Warning message for disabling batch splitting -->
+          <div id="batchWarningMessage" class="warning-message" style="display:none; margin: 5px 0; padding: 8px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 4px; font-size: 12px;">
+            <i class="ri-alert-line" style="margin-right: 5px;"></i>
+            <span>Warning: Sending messages without batch splitting may trigger WhatsApp's spam detection. Batches with cooldown periods are strongly recommended for account safety.</span>
+          </div>
+          <div class="control-group-sub" id="batchSettings">
+            <label class="control-label-sub">Send in batches of</label>
+            <div class="batch-row">
+              <div class="input-unit-group">
+                <span class="range-prefix">Min</span>
+                <input type="number" id="batchSize" value="40" min="1" class="control-input small-input" />
+                <span class="range-prefix">Max</span>
+                <input type="number" id="batchSizeMax" value="50" min="1" class="control-input small-input" />
+                <span class="input-unit tiny-unit">msgs</span>
+              </div>
+              <label class="control-label-sub">and wait for</label>
+              <div class="input-unit-group">
+                <span class="range-prefix">Min</span>
+                <input type="number" id="delayBetweenBatches" value="11" min="1" class="control-input small-input" />
+                <span class="range-prefix">Max</span>
+                <input type="number" id="delayBetweenBatchesMax" value="16" min="1" class="control-input small-input" />
+                <span class="input-unit tiny-unit">min</span>
+              </div>
+            </div>
+            <span class="batch-suffix">after every batch</span>
+          </div>
+          <!-- Timestamp/Identifier Toggle -->
+          <div id="timestamp-warning" class="warning-message" style="display:none; margin: 5px 0; padding: 8px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 4px; font-size: 12px;">
+            <i class="ri-alert-line" style="margin-right: 5px;"></i>
+            <span><b>Warning:</b> Sending messages without a unique timestamp may trigger WhatsApp's spam detection. Adding a timestamp is strongly recommended for account safety.</span>
+          </div>
+          <div class="control-group stacked-right">
+            <div class="control-label-wrapper">
+              <label class="control-label">Add Unique Timestamp
+                <i class="ri-information-line" title="Adds a unique timestamp to each message to help avoid spam detection."></i>
+              </label>
+
+            </div>
+            <div class="control-input-wrapper">
+              <label class="toggle-switch">
+                <input type="checkbox" id="timestampToggle" class="toggle-switch-input" checked />
+                <span class="toggle-switch-slider"></span>
+              </label>
+            </div>
+          </div>
+          <!-- Safety Mode Toggle -->
+          <div class="control-group important-control safety-mode-vertical">
+            <div class="control-row">
+              <label class="control-label" for="safetyModeToggle">Safety Mode
+                <i class="ri-information-line" title="When enabled, the extension will occasionally send a message to your own number to simulate human behavior and reduce the risk of being flagged."></i>
+              </label>
+              <div class="control-input-wrapper">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="safetyModeToggle" class="toggle-switch-input" checked>
+                  <span class="toggle-switch-slider"></span>
+                </label>
+              </div>
+            </div>
+            <div id="safety-mode-status" class="safety-mode-status-display">
+              <span class="text-muted">Your Number:</span>
+              <span id="own-phone-number-display" class="phone-number-value">Checking...</span>
+            </div>
+          </div>
+          <!-- Warning message for disabling safety mode -->
+          <div id="safetyModeWarning" class="warning-message" style="display:none; margin: 5px 0; padding: 8px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 4px; font-size: 12px;">
+            <i class="ri-alert-line" style="margin-right: 5px;"></i>
+            <span>Warning: Disabling Safety Mode increases the risk of your account being flagged or banned by WhatsApp. It is highly recommended to keep this feature enabled.</span>
+          </div>
+
+          <!-- Campaign Summary -->
+          <div class="campaign-summary">
+            <h4>Campaign Summary</h4>
+            <div class="summary-grid">
+              <div class="summary-item">
+                <p>Total Contacts</p>
+                <p id="totalContacts">0</p>
+              </div>
+              <div class="summary-item">
+                <p>Selected</p>
+                <p id="selectedContacts">0</p>
+              </div>
+              <div class="summary-item">
+                <p>Est. Duration</p>
+                <p id="estDuration">0h 0m</p>
+              </div>
+              <div class="summary-item">
+                <p>Batches</p>
+                <p id="batches">0</p>
+              </div>
+            </div>
+
+          </div>
+          <!-- Start Campaign Button -->
+          <div class="button-group">
+            <button id="startCampaignBtn" class="btn btn-primary"><i class="ri-message-3-line"></i> Start
+              Campaign</button>
+            <div id="buyNowSection" style="display:none;margin-top:10px;text-align:center;">
+              <p style="color:#ff4444;font-size:12px;">License required for this feature</p>
+              <button id="buyNowBtn" class="btn" style="background:#25D366;color:white;">Buy License</button>
+            </div>
+          </div>
+          
+
+          <!-- Add reset button to free stuck campaigns -->
+          <div class="reset-campaign-container" style="margin-top: 15px; text-align: center;">
+            <button id="resetCampaignBtn" class="danger-button"
+              style="padding: 8px 16px; background-color: #d32f2f; color: white; border: none; border-radius: 4px; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;">
+              <i class="ri-restart-line" style="margin-right: 5px;"></i>
+              Reset Stuck Campaign
+            </button>
+            <p class="small-hint" style="font-size: 12px; color: #757575; margin-top: 5px;">
+              Use this only if a campaign is shown as running but isn't actually sending messages
+            </p>
+          </div>
+          <!-- Legacy URL Sending Toggle -->
+          <div class="control-group important-control">
+            <label class="control-label">Use Direct URL Navigation
+              <i class="ri-information-line" title="Uses WhatsApp's direct URL scheme to reliably open each chat. Works better for unsaved numbers and provides better error handling. Strongly recommended to keep enabled for attachment support."></i>
+              <span class="recommended-badge">Recommended</span>
+            </label>
+            <div class="control-input-wrapper">
+              <label class="toggle-switch">
+                <input type="checkbox" id="legacyMethodToggle" class="toggle-switch-input" checked />
+                <span class="toggle-switch-slider"></span>
+              </label>
+            </div>
+          </div>
+          <!-- Warning message for disabling legacy URL method -->
+          <div id="legacyMethodWarningMessage" class="warning-message" style="display:none; margin: 5px 0; padding: 8px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 4px; font-size: 12px;">
+            <i class="ri-alert-line" style="margin-right: 5px;"></i>
+            <span>Warning: Disabling the Direct URL Navigation may cause issues with attachments and unsaved numbers. Only disable if you're experiencing specific problems.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for attachment preview -->
+    <div id="attachmentModal" class="modal">
+      <div class="modal-content">
+        <span id="modalClose" class="modal-close">×</span>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Module import script moved to external file -->
+  <script type="module" src="../js/sender-init.js"></script>
+  <script type="module" src="../js/safetyMode.js"></script>
+  <script type="module">
+    import { logOwnWhatsAppNumberStatus } from '../js/safetyMode.js';
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const safetyModeToggle = document.getElementById('safetyModeToggle');
+      const safetyModeWarning = document.getElementById('safetyModeWarning');
+
+      // Function to update warning visibility based on toggle state
+      function updateSafetyModeWarning() {
+        if (!safetyModeToggle.checked) {
+          safetyModeWarning.style.display = 'block';
+        } else {
+          safetyModeWarning.style.display = 'none';
+        }
+      }
+
+      // Initial check when the page loads
+      updateSafetyModeWarning();
+
+      // Listen for changes on the toggle switch
+      safetyModeToggle.addEventListener('change', function() {
+        updateSafetyModeWarning();
+        logOwnWhatsAppNumberStatus(); // Log the status when the toggle changes
+      });
+
+      // Also log the status on initial load
+      logOwnWhatsAppNumberStatus();
+    });
+  </script>
+</body>
+
+</html>
